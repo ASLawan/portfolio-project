@@ -1,0 +1,49 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        All Reviews
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Provider Reviewed</th>
+                    <th>Project Reviewed</th>
+                    <th>Project Review</th>
+                    <th>Project Rating</th>
+                    <th>Review Date</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Provider Reviewed</th>
+                    <th>Project Reviewed</th>
+                    <th>Project Review</th>
+                    <th>Project Rating</th>
+                    <th>Review Date</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                {% for review in reviews %}
+                <tr>
+                    <td>{{ review.provider.username | capfirst }}</td>
+                    <td>{{ review.project_name.project_name }}</td>
+                    <td>{{ review.review | slice:":50" }}</td>
+                    <td>
+                        {% if review.project_rating == 1 %}
+                            {{ review.project_rating }} star
+                        {% else %}
+                            {{ review.project_rating }} Stars
+                        {% endif %}
+                    </td>
+                    <td>{{ review.review_date | date:"F d, Y"}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        All Projects
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>Project Handler</th>
+                    <th>Project Name</th>
+                    <th>Project Status</th>
+                    <th>Details</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Project Handler</th>
+                    <th>Project Name</th>
+                    <th>Project Status</th>
+                    <th>Details</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                {% for project in projects %}
+                <tr>
+                    <td>{{ project.provider }}</td>
+                    <td>{{ project.project_name }}</td>
+                    <td>{{ project.project_status }}</td>
+                    <td><a href="{% url 'project_detail' project.id %}" class="btn btn-outline-info btn-sm">Preview</a></td>
+                    <td><a href="{% url 'update_project' project.id %}" class="btn btn-outline-success btn-sm">Edit</a></td>
+                    <td><a href="{% url 'delete_project' project.id %}" class="btn btn-outline-danger btn-sm">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

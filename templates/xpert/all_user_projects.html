@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+    <title>projects by {{ profile.username }}</title>
+
+    {% block content %}
+    <h2>All Projects by {{ profile.username }}</h2>
+    <ul>
+        <li>
+            <div class="container">
+                <div class="row">
+                 {% for project in projects %}
+                  <div class="col-md-4">
+                    <!-- <div class="card mb-3"> -->
+                        <div class="card" style="width: 18rem;">
+                            <img src="{{ project.project_picture.url }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title">{{ project.project_name }}</h5>
+                              <p class="card-text">Project status: {{ project.project_status }}</p>
+                              <a href="{% url 'project_detail' project.id %}" class="btn btn-success">Project details</a>
+                            </div>
+                        </div>
+                    <!-- </div> -->
+                  </div>
+                  {% endfor %}
+                </div>
+            </div>
+        </li>
+    </ul>
+    {% endblock %}

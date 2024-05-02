@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+    <title>all services</title>
+    {% block content %}
+    <h2>All Services by: {{ profile.username }}</h2>
+    <ul>
+        <li>
+            <div class="container">
+                <div class="row">
+                 {% for service in services %}
+                  <div class="col-md-4">
+                    <!-- <div class="card mb-3"> -->
+                        <div class="card" style="width: 18rem;">
+                            <!-- <img src="{{ project.project_picture.url }}" class="card-img-top" alt="..."> -->
+                            <div class="card-body">
+                              <h5 class="card-title">{{ service.service_name }}</h5>
+                              <p class="card-text"> Service provider: {{ service.provider.username }}</p>
+                              <a href="{% url 'service_detail' service.id %}" class="btn btn-success">Service details</a>
+                            </div>
+                        </div>
+                    <!-- </div> -->
+                  </div>
+                  {% endfor %}
+                </div>
+            </div>
+        </li>
+    </ul>
+    {% endblock %}

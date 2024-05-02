@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+    <title>Reviews</title>
+
+    {% block content %}
+    <h2>All Reviews</h2>
+    <ul>
+        <li>
+            <div class="container">
+                <div class="row">
+                 {% for review in reviews %}
+                  <div class="col-md-4">
+                    <!-- <div class="card mb-3"> -->
+                        <div class="card" style="width: 18rem;">
+                            <!-- <img src="{{ project.project_picture.url }}" class="card-img-top" alt="..."> -->
+                            <div class="card-body">
+                              <h5 class="card-title">Review for {{ review.provider.username }}</h5>
+                              <p class="card-text">Review rating: {{ review.project_rating }}</p>
+                              <p class="card-text">Review date: {{ review.review_date }}</p>
+                              <a href="{% url 'review_detail' review.id %}" class="btn btn-success">Review details</a>
+                            </div>
+                        </div>
+                    <!-- </div> -->
+                  </div>
+                  {% endfor %}
+                </div>
+            </div>
+        </li>
+    </ul>
+    {% endblock %}

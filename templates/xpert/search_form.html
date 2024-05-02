@@ -1,0 +1,27 @@
+<form class="row g-3 border border-success rounded p-4" action="{% url 'service_search' %}" method="POST">
+    {% csrf_token %}
+    <div class="row g-2">
+        <div class="col-md-10">
+            <!-- <label for="inputCity" class="form-label">Search</label> -->
+            <input class="form-control me-2" type="search" placeholder="Search for services here.... you can filter by country, region or town" aria-label="Search" name="search">
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-success" style="width: 100%;">Search</button>
+        </div>
+    </div>
+    <div class="row g-2 mb-4">
+        <div class="col-md-4">
+            <label for="inputCity" class="form-label">Country</label>
+            <input type="text" class="form-control" id="country" placeholder="Country..." name="country">
+        </div>
+        <div class="col-md-4">
+            <label for="inputState" class="form-label">Region</label>
+            <input type="text" class="form-control" id="region" placeholder="Region/State/Province...." name="region">
+        </div>
+        <div class="col-md-4">
+            <label for="inputZip" class="form-label">Town</label>
+            <input type="text" class="form-control" id="town" placeholder="Town..." name="town">
+        </div>
+    </div>
+    
+</form>

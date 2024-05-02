@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xpert Profile Detail</title>
+</head>
+<body>
+    {% block content %}
+        <h2>{{ user.user.username }}'s Profile</h2>
+        <p>Profession: {{ user.profession }}</p>
+        <p>Region: {{ user.region }}</p>
+        <p>Town: {{ user.town }}</p>
+    {% endblock %}
+    <a href="{% url 'logout' %}">Logout</a>
+    <p>Go to home page <a href="{% url 'home' %}">Home</a></p>
+</body>
+</html>

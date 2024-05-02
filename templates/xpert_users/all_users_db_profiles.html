@@ -1,0 +1,46 @@
+{% extends 'base2.html' %}
+
+{% block content %}
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table me-1"></i>
+        All profiles
+    </div>
+    <div class="card-body">
+        <table id="datatablesSimple">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Profession</th>
+                    <th>Account Type</th>
+                    <th>Country</th>
+                    <th>Region</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Profession</th>
+                    <th>Account Type</th>
+                    <th>Country</th>
+                    <th>Region</th>
+                </tr>
+            </tfoot>
+            <tbody>
+                {% for profile in profiles %}
+                <tr>
+                    <td>{{ profile.first_name | capfirst }}</td>
+                    <td>{{ profile.last_name | capfirst }}</td>
+                    <td>{{ profile.profession }}</td>
+                    <td>{{ profile.account_type }}</td>
+                    <td>{{ profile.country }}</td>
+                    <td>{{ profile.region }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

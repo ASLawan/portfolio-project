@@ -1,0 +1,35 @@
+<!-- templates/base.html -->
+{% extends 'base2.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} delete service {% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4 mt-4">Delete Service: {{ service.service_name }}</h1>
+
+    <div class="content-section">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Delete service</legend>
+                <p>Are you sure you want to delete: {{ service.service_name }}?</p>
+                {{ form|crispy }}
+            </fieldset>
+            <!-- <div class="form-group">
+                <button class="btn btn-outline-danger" type="submit">Delete project</button>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-outline-success"><a href="{% url 'profiles' %}">Cancel</a></button>
+            </div> -->
+            <div class="row">
+              <div class="col">
+                <button class="btn btn-success form-control  btn-block"><a href="{% url 'db_services' %}">Cancel</a></button>
+              </div>
+              <div class="col">
+                <button class="btn btn-danger form-control btn-block" type="submit">Delete service</button></div>
+            </div>
+        </form>
+        
+    </div>
+{% endblock %}

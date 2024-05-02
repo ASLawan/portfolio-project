@@ -1,0 +1,47 @@
+<!-- templates/base.html -->
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} delete profile {% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4 mt-4">Delete User Profile: {{ user.username }}</h1>
+
+    <div class="content-section">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Delete profile</legend>
+                <p>Are you sure you want to delete {{ user.username }}'s profile?</p>
+                {{ form|crispy }}
+            </fieldset>
+            <!-- <div class="form-group">
+                <button class="btn btn-outline-danger" type="submit">Delete project</button>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-outline-success"><a href="{% url 'profiles' %}">Cancel</a></button>
+            </div> -->
+            <div class="row">
+              <div class="col">
+                <button class="btn btn-success form-control  btn-block"><a href="{% url 'profiles' %}">Cancel</a></button>
+              </div>
+              <div class="col">
+                <button class="btn btn-danger form-control btn-block" type="submit">Delete profile</button></div>
+            </div>
+        </form>
+        
+    </div>
+{% endblock %}
+
+<!-- 
+  <h2>Delete Profile</h2>
+  <p>Are you sure you want to delete {{ user.username }}'s profile?</p>
+  <form method="POST">
+    {% csrf_token %}
+    <button type="submit">Confirm Delete</button>
+    {{ form|crispy }}
+    <a href="{% url 'profiles' %}">Cancel</a>
+  </form> -->
+
+

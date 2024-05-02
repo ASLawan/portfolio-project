@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Review Details {% endblock %}
+{% block content %}
+<div class="container">
+    <div class="project_handler">
+        <h2>Review details</h2>
+        <div class="project_handler_para">
+            <p>
+                Review for: <a href="{% url 'profile_detail' user.id %}">{{ review.provider.username | capfirst }}</a>
+            </p>
+            <hr>
+        </div>
+    </div>
+    <div class="project_description mt-2">
+        <h5>Review</h5>
+        <hr>
+        <div class="describe">
+            <p>{{ review.review }}</p>
+        </div>
+    </div>
+    <div class="project_status">
+        <h5>Project reviewed</h5>
+        <hr>
+        <div class="status">
+            <p>Project rating: {{ review.project_name}}</p>
+        </div>
+    </div>
+    <div class="project_in_pictures">
+        <h5>Project rating</h5>
+        <hr>
+        <div class="rating">
+            <p>Project rated: {{ review.project_rating }} star</p>
+        </div>
+    </div>
+</div>
+
+{% endblock%}

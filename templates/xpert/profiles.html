@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}All user profiles{% endblock %}
+{% block content %}
+          <div class="container">
+            <h2>All User Profiles</h2>
+                <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          </div>
+        <ul>
+          <li>
+        <div class="container">
+          <div class="row">
+              {% for profile in profiles %}
+            <div class="col-md-6">
+              <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-4 d-flex justify-content-center align-items-center" id="small_pic">
+                    <img src="{{ profile.profile_picture.url }}" class="rounded-circle img-fluid" alt="Profile picture" width="150px" height="150px">
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <div class="profile_info">
+                      <h4><a href="{% url 'profile_detail' profile.id %}">{{ profile.username | capfirst }}</a></h4>
+                      <p class="card-text">{{ profile.profession }}</p>
+                      {% if profile.available is True %}
+                        <p class="card-text">Available for work</p>
+                      {% else %}
+                        <p class="card-text">Not Available for work</p>
+                      {% endif %}
+                      </div>
+                      <div class="profile_links">
+                        <div class="profile_socials">
+                          <a href="#"><i class="bi bi-whatsapp"></i></a>
+                          <a href="#"><i class="bi bi-linkedin"></i></a>
+                          <a href="#"><i class="bi bi-facebook"></i></a>
+                          <a href="#"><i class="bi bi-youtube"></i></a>
+                        </div>
+                        <div class="profile_user">
+                          <a class="btn btn-outline-success btn-sm" href="{% url 'profile_detail' profile.id %}" role="button">Profile</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          {% endfor %}
+          </div>
+        </div>
+        </li>
+        </ul>
+        
+  {% endblock %}

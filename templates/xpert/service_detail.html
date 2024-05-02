@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Service Details {% endblock %}
+{% block content %}
+<div class="container">
+    <div class="project_handler">
+        <h2>Service details</h2>
+        <div class="project_handler_para">
+            <p>
+                Service offered by: <a href="{% url 'profile_detail' user.id %}">{{ service.provider.username | capfirst }}</a>
+            </p>
+            <hr>
+        </div>
+    </div>
+    <div class="project_status">
+        <h5>Service name</h5>
+        <hr>
+        <div class="status">
+            <p>Service: {{ service.service_name }}</p>
+        </div>
+    </div>
+    <div class="project_description">
+        <h5>Service Description</h5>
+        <hr>
+        <div class="describe">
+            {{ service.service_description }}
+        </div>
+    </div>
+    <div class="project_in_pictures mt-4">
+        <h5>Talk to Expert</h5>
+        <hr>
+        <div class="talk">
+            <a href="#"><i class="bi bi-whatsapp mx-2"></i>WhatsApp</a>
+        </div>
+    </div>
+</div>
+
+{% endblock%}

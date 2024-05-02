@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Project Details {% endblock %}
+{% block content %}
+<div class="container">
+    <div class="project_handler">
+        <h2>Project details</h2>
+        <div class="project_handler_para">
+            <p>
+                {% if project.status == 'C' %}
+                    Project executed by <a href="{% url 'profile_detail' user.id %}">{{ project.provider.username | capfirst }}</a>
+                {% else %}
+                    Project is being executed by <a href="{% url 'profile_detail' user.id %}">{{ project.provider.username | capfirst}}</a>
+                {% endif %}
+            </p>
+            <hr>
+        </div>
+    </div>
+    <div class="project_in_pictures">
+        <h5>Project in pictures</h5>
+        <hr>
+        <div class="d-flex justify-content-center align-items-center">
+            <img src="{{ project.project_picture.url }}" alt="Project picture" class="rounded-start img-fluid" width="300px" height="350px">
+        </div>
+    </div>
+    <div class="project_description">
+        <h5>Project Description</h5>
+        <hr>
+        <div class="describe">
+            <p>{{ project.project_description }}</p>
+        </div>
+    </div>
+    <div class="project_status">
+        <h5>Project Status</h5>
+        <hr>
+        <div class="status">
+            <p>Project Status: {{ project.project_status }}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock%}

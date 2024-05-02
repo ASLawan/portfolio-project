@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %} Home Page {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Welcome to Xpert</h1>
+            {% if user.is_authenticated and user.account_type == "Service provider" %}
+                <a href="{% url 'profile_detail' user.id %}">Profile</a>
+                <a href="{% url 'dashboard' %}">Go to Dashboard</a>
+                <a href="{% url 'logout' %}">
+                    <form method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                    </form>
+                </a>
+            {% elif user.is_authenticated and user.account_type == "Service seeker" %}
+                <a href="{% url 'profile_detail' user.id %}">Profile</a>
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'register' %}">Register</a>
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+                <p>Greetings {{ user.username | capfirst }}!</p>
+        <div class="search_form">
+            {% include 'xpert/search_form.html' %}
+        </div>
+    </div>
+{% endblock %}
