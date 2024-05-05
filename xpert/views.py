@@ -9,7 +9,13 @@ from django.contrib import messages
 
 def homepage(request):
     """returns the web app home page"""
-    return render(request, "xpert/home.html")
+    profiles = User.objects.all()
+    services = Service.objects.all()
+    context = {
+        'profiles': profiles,
+        'services': services,
+        }
+    return render(request, 'xpert/home.html', context)
 
 # @login_required
 # def login_check(request):
@@ -495,3 +501,13 @@ def service_search(request):
             "form": form,
         }
     return render(request, "xpert/search_results.html", context)
+
+
+# HOME
+def home_profiles(request):
+    """lists all user profiles from the database"""
+    profiles = User.objects.all()
+    context = {
+        'profiles': profiles,
+        }
+    return render(request, 'xpert/home.html', context)

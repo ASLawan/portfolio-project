@@ -54,6 +54,9 @@ urlpatterns = [
 
     # SEARCH RESULTS
     path('search/', views.service_search, name='service_search'),
+
+    # HOME
+    # path("home_profiles", views.home_profiles, name="home_profiles"),
 ]
 
 
