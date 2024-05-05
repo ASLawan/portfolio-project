@@ -3,8 +3,13 @@
 {% load crispy_forms_tags %}
     {% block title %} create your account{% endblock %}
 
+    {% block header %}
+
+    {% include "xpert/navbar.html" %}
+
+    {% endblock %}
     {% block content %}
-    <div class="container-sm">
+    <div class="container-sm" style="margin-top: 8rem; margin-bottom: 3rem;">
         <div class="content-section">
         <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
@@ -13,14 +18,20 @@
                 {{ form|crispy }}
             </fieldset>
             <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Sign Up</button>
+                <button class="btn btn-sm text-white" type="submit" style="background-color: #008080;">Sign Up</button>
             </div>
         </form>
         <div class="border-top pt-3">
             <small class="text-muted">
-                Already have an account? <a class="ml-2" href="{% url 'login'%}">Sign in</a>
+                Already have an account? <a class="ml-2" href="{% url 'login'%}" style="color: #008080; text-decoration: none;">Sign in</a>
             </small>
         </div>
     </div>
     </div>
     {% endblock %}
+
+    {% block footer %}
+
+    {% include 'xpert/footer.html' %}
+
+{% endblock %}

@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
-    <title>all services</title>
-    {% block content %}
+{% block title %}All user services{% endblock %}
+
+{% block header %}
+
+    {% include "xpert/navbar.html" %}
+
+{% endblock %}
+
+{% block content %}
     <h2>All Services</h2>
     <ul>
         <li>
@@ -26,4 +33,9 @@
             </div>
         </li>
     </ul>
-    {% endblock %}
+{% endblock %}
+{% block footer %}
+
+    {% include 'xpert/footer.html' %}
+
+{% endblock %}

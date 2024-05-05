@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 {% block title %}All user profiles{% endblock %}
+
+{% block header %}
+
+    {% include "xpert/navbar.html" %}
+
+{% endblock %}
+
 {% block content %}
-          <div class="container">
+          <div class="container" style="padding-top: 5rem;">
             <h2>All User Profiles</h2>
                 <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
           </div>
@@ -35,7 +42,7 @@
                           <a href="#"><i class="bi bi-youtube"></i></a>
                         </div>
                         <div class="profile_user">
-                          <a class="btn btn-outline-success btn-sm" href="{% url 'profile_detail' profile.id %}" role="button">Profile</a>
+                          <a class="btn btn-sm text-white" href="{% url 'profile_detail' profile.id %}" role="button" style="background-color: #008080;">Profile</a>
                         </div>
                       </div>
                     </div>
@@ -51,3 +58,8 @@
         </ul>
         
   {% endblock %}
+{% block footer %}
+
+  {% include 'xpert/footer.html' %}
+
+{% endblock %}

@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-around p-3 flex-wrap fixed-top" style="background-color: #008080;">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="d-flex justify-content-center align-items-center"> 
+            <a href="{% url 'home' %}" class="nav-link text-white nav-logo">Xpert</a>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+        <div class="d-flex justify-content-center align-items-center">
+            {% if user.is_authenticated and user.account_type == "Service provider" %}
+            <ul class="nav">
+                <li class="nav-item">
+                    <a href="{% url 'profile_detail' user.id %}" class="nav-link text-white">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'dashboard' %}" class="nav-link text-white">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'logout' %}" class="nav-link text-white">
+                        <form method="POST" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit">Logout</button>
+                        </form>
+                    </a>
+                </li>
+            </ul>
+        {% elif user.is_authenticated and user.account_type == "Service seeker" %}
+            <ul class="nav">
+                <li class="nav-item">
+                    <a href="{% url 'profile_detail' user.id %}" class="nav-link">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'logout' %}" class="nav-link">
+                        <form method="POST" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit">Logout</button>
+                        </form>
+                    </a>
+                </li>
+            </ul>
+        {% else %}
+            <ul class="nav">
+                <li class="nav-item">
+                    <a href="{% url 'register' %}" class="nav-link text-white">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'login' %}" class="nav-link text-white">Login</a>
+                </li>
+            </ul>
+        {% endif %}
+        </div>
+    </div>
+</div>

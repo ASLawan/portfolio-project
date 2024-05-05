@@ -2,28 +2,199 @@
 
 {% block title %} Home Page {% endblock %}
 
+{% block header %}
+
+    {% include "xpert/navbar.html" %}
+
+{% endblock %}
+
+
 {% block content %}
-    <div class="container">
-        <h1>Welcome to Xpert</h1>
-            {% if user.is_authenticated and user.account_type == "Service provider" %}
-                <a href="{% url 'profile_detail' user.id %}">Profile</a>
-                <a href="{% url 'dashboard' %}">Go to Dashboard</a>
-                <a href="{% url 'logout' %}">
-                    <form method="POST" action="{% url 'logout' %}">
-                    {% csrf_token %}
-                    <button type="submit">Logout</button>
-                    </form>
-                </a>
-            {% elif user.is_authenticated and user.account_type == "Service seeker" %}
-                <a href="{% url 'profile_detail' user.id %}">Profile</a>
-                <a href="{% url 'logout' %}">Logout</a>
-            {% else %}
-                <a href="{% url 'register' %}">Register</a>
-                <a href="{% url 'login' %}">Login</a>
-            {% endif %}
-                <p>Greetings {{ user.username | capfirst }}!</p>
+    <div class="container text-center" style="margin-top: 10rem;">
+        <h2>Find & Book Trusted Service Providers Near You</h2>
+        <p>Connect with and book the best of Xperts for your projects.</p>
+    </div>
+    <div class="container" id="container">
+        <div>
+            <p>Greetings {{ user.username | capfirst }}!</p>
+        </div>
         <div class="search_form">
             {% include 'xpert/search_form.html' %}
         </div>
     </div>
+    <div class="container" style="margin-top: 4rem;">
+        <div class="why d-flex p-2 justify-content-center text-white rounded" style="width: 60%; margin: 0 auto; background-color: #008080; font-size: 36px;">
+            Why Xpert?
+        </div>
+        <div class="benefits d-flex p-2 justify-content-around flex-wrap mt-4">
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+                        <div class="d-flex justify-content-center">
+                            <i class="bi bi-tools" style="font-size: 5rem; color: #008080;"></i>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <p>You have a Skill</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+                        <div class="d-flex justify-content-center">
+                            <i class="bi bi-server" style="font-size: 5rem; color: #008080;"></i>
+                            
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <p>You render Services</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+                        <div class="d-flex justify-content-center">
+                            <i class="bi bi-people-fill" style="font-size: 5rem; color: #008080;"></i>
+                            
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <p>Gain a Client Base</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+                        <div class="d-flex justify-content-center">
+                            <i class="bi bi-graph-up-arrow" style="font-size: 5rem; color: #008080;"></i>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <p>Boost your Earnings</p>
+                        </div>
+                    </div>
+        </div>
+        <div class="why d-flex p-2 justify-content-center mb-2">
+            <button class="btn btn-outline-info btn-sm" style="background-color: #008080;"><a href="{% url 'register' %}" style="text-decoration: none;" class="text-white">Create your account ....</a></button>
+        </div>
+    </div>
+    <div class="container text-center">
+        <h2>Featured Profiles</h2>
+            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+      </div>
+    <ul>
+      <li>
+    <div class="container">
+      <div class="row">
+          {% for profile in profiles %}
+        <div class="col-md-6">
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-4 d-flex justify-content-center align-items-center" id="small_pic">
+                <img src="{{ profile.profile_picture.url }}" class="rounded-circle img-fluid" alt="Profile picture" width="150px" height="150px">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <div class="profile_info">
+                  <h4><a href="{% url 'profile_detail' profile.id %}">{{ profile.username | capfirst }}</a></h4>
+                  <p class="card-text">{{ profile.profession }}</p>
+                  {% if profile.available is True %}
+                    <p class="card-text">Available for work</p>
+                  {% else %}
+                    <p class="card-text">Not Available for work</p>
+                  {% endif %}
+                  </div>
+                  <div class="profile_links">
+                    <div class="profile_socials">
+                      <a href="#"><i class="bi bi-whatsapp"></i></a>
+                      <a href="#"><i class="bi bi-linkedin"></i></a>
+                      <a href="#"><i class="bi bi-facebook"></i></a>
+                      <a href="#"><i class="bi bi-youtube"></i></a>
+                    </div>
+                    <div class="profile_user">
+                      <a class="btn btn-sm text-white" href="{% url 'profile_detail' profile.id %}" role="button" style="background-color: #008080;">Profile</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      {% endfor %}
+      </div>
+    </div>
+    </li>
+    </ul>
+    <div class="container d-flex justify-content-center">
+        <a class="btn btn-sm text-white" href="{% url 'profiles' %}" role="button" style="background-color: #008080;">More profiles...</a>
+    </div>
+    <div class="container" style="margin-top: 4rem;">
+        <div class="why d-flex p-2 justify-content-center text-white rounded" style="width: 60%; margin: 0 auto; background-color: #008080; font-size: 36px;">
+            Why book from Xpert?
+        </div>
+        <div class="benefits d-flex p-2 justify-content-around flex-wrap mt-4">
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+                        <div class="d-flex justify-content-center">
+                            <i class="bi bi-safe" style="font-size: 5rem; color: #008080;"></i>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <p>Trusted Services</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+                        <div class="d-flex justify-content-center">
+                            <i class="bi bi-suitcase-lg-fill" style="font-size: 5rem; color: #008080;"></i>
+                            
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <p>Work with eXperts</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+                        <div class="d-flex justify-content-center">
+                            <i class="bi bi-arrows-fullscreen" style="font-size: 5rem; color: #008080;"></i>
+                            
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <p>Multiple options</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-12">
+                        <div class="d-flex justify-content-center">
+                            <i class="bi bi-tags-fill" style="font-size: 5rem; color: #008080;"></i>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <p>Affordable Services</p>
+                        </div>
+                    </div>
+        </div>
+        <div class="why d-flex p-2 justify-content-center mb-2">
+            <button class="btn btn-outline-info btn-sm" style="background-color: #008080;"><a href="{% url 'services' %}" style="text-decoration: none;" class="text-white">Book a service ....</a></button>
+        </div>
+    </div>
+
+    <!-- Featured Services -->
+    <h2>Featured Services</h2>
+    <ul>
+        <li>
+            <div class="container">
+                <div class="row">
+                 {% for service in services %}
+                    <div class="col-md-4">
+                        <div class="card mb-3" style="max-width: 300px;">
+                            <div class="row g-0">
+                                <div class="card border border-success" style="width: 100%;">
+                                    <!-- <img src="{{ project.project_picture.url }}" class="card-img-top" alt="..."> -->
+                                    <div class="card-body">
+                                    <h5 class="card-title">{{ service.service_name }}</h5>
+                                    <p class="card-text"> Service provider: {{ service.provider.username }}</p>
+                                    <a href="{% url 'service_detail' service.id %}" class="btn btn-outline-success btn-sm">Service details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  {% endfor %}
+                </div>
+            </div>
+        </li>
+    </ul>
+    <div class="why d-flex p-2 justify-content-center m-2">
+        <button class="btn btn-outline-info btn-sm" style="background-color: #008080;"><a href="{% url 'services' %}" style="text-decoration: none;" class="text-white">More services...</a></button>
+    </div>
+{% endblock %}
+
+{% block footer %}
+
+    {% include 'xpert/footer.html' %}
+
 {% endblock %}
