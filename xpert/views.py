@@ -5,6 +5,7 @@ from xpert_users.forms import UserRegistrationForm, UserProfileForm
 from .models import Projects, Service, Reviews
 from xpert_users.models import User
 from django.contrib import messages
+
 # Create your views here.
 
 def homepage(request):
@@ -32,7 +33,7 @@ def dashboard(request):
     return render(request, 'xpert_users/dashboard.html')
 
 
-# READ ALL
+# READ ALL : views to read data from database
 def all_profiles(request):
     """lists all user profiles from the database"""
     profiles = User.objects.all()
@@ -67,7 +68,7 @@ def all_reviews(request):
         }
     return render(request, 'xpert/reviews.html', context)
 
-# READ ALL BY USER
+# READ ALL BY USER : views to read user-specific data from the database 
 def all_user_projects(request, id):
     """lists all projects from the database for a given user"""
     profile = User.objects.get(pk=id)
@@ -99,7 +100,7 @@ def all_user_reviews(request, id):
     return render(request, 'xpert/all_user_reviews.html', context)
 
 
-# READ INDIVIDUAL
+# READ INDIVIDUAL : views to render individual objects
 def profile_detail(request, id):
     """displays user profiles for each user"""
     user = User.objects.get(pk=id)
@@ -143,7 +144,7 @@ def review_detail(request, id):
     return render(request, 'xpert/review_detail.html', context)
 
 
-# CREATE
+# CREATE : views to handle object creation
 @login_required
 def create_profile(request):
     """creates user account profile"""
@@ -221,7 +222,7 @@ def create_review(request):
     return render(request, 'xpert/create_review.html', context)
 
 
-# UPDATE
+# UPDATE : views to handle object updates
 @login_required
 def update_user(request, id):
     """updates user information in the database"""
@@ -336,7 +337,7 @@ def update_review(request, id):
     return render(request, 'xpert/update_review.html', context)
 
 
-# DELETE
+# DELETE : views to handle object deletion
 @login_required
 def delete_user(request, id):
     """Deletes a given user object from the database"""
@@ -414,7 +415,7 @@ def delete_review(request, id):
 
 
 
-# CLIENT DASHBOARD
+# CLIENT DASHBOARD : displays client dashboard to logged in users
 
 def all_user_db_services(request, id):
     """lists all services from the database for given profile"""
@@ -437,7 +438,7 @@ def all_user_db_projects(request, id):
     }
     return render(request, 'xpert_users/all_user_db_projects.html', context)
 
-# ADMIN DASHBOARD
+# ADMIN DASHBOARD : displays admin dashboard
 
 def all_users_db_profiles(request):
     """lists all user profiles from the database"""
