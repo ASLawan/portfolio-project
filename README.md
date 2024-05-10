@@ -110,3 +110,9 @@ pip install -r requirements.txt
 - Register as a service provider or service seeker.  
 - Create and manage your profile (service providers) or   
 - Search and book services (service seekers).
+
+## Contribution
+
+This project is a personal portfolio piece and not intended for collaboration at this time.  
+In the future, probably after the project has been vetted, I will make it open for contributions  
+as it will be an opportunity to learn and improve upon the project.
